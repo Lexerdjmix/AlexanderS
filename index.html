@@ -69,6 +69,15 @@
 			</div>
 		</div>
 	</div>
+	<div class="modal" id="enclaveModal" role="dialog" aria-modal="true" aria-labelledby="enclaveTitle" hidden>
+		<div class="modal-card enclave-modal-card">
+			<button class="close-button" id="closeEnclaveButton" type="button" aria-label="Cerrar explicación">×</button>
+			<span class="eyebrow">Inspección de componente</span>
+			<h2 id="enclaveTitle">Secure Enclave</h2>
+			<p class="modal-intro">Componente especializado que aísla operaciones sensibles de seguridad y criptografía. Su función no implica que una adquisición tenga acceso universal a las claves o a los datos.</p>
+			<div class="enclave-modal-flow"><span>BIOMETRÍA</span><i>→</i><span>CLAVE</span><i>→</i><span>DATA PROTECTION</span></div>
+		</div>
+	</div>
 
 	<div class="toast" id="toast" role="status"></div>
 </body>
