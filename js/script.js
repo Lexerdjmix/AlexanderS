@@ -17,7 +17,33 @@ const slideTitles = [
 const esc = (value) => String(value).replace(/[&<>"']/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[char]));
 const memberList = members.map((member, index) => `<li><span>${String(index + 1).padStart(2, '0')}</span>${esc(member)}</li>`).join('');
 const label = (text) => `<span class="eyebrow">${text}</span>`;
-const slide = (number, content, className = '') => `<section class="slide ${className}" data-slide="${number}" aria-label="Diapositiva ${number}: ${esc(slideTitles[number - 1])}">${content}</section>`;
+const visualCaptions = [
+  'Dispositivo iOS bajo análisis', 'Teléfono como fuente de evidencia', 'Evolución de las protecciones',
+  'Capas de la plataforma', 'Ruta de una llamada al sistema', 'Memoria NAND y bloques',
+  'Preservación del dispositivo', 'Volúmenes de APFS', 'Historial Copy-on-Write',
+  'Nodos de autenticación', 'Contenedores aislados', 'Chip de seguridad',
+  'Cadena de interpretación', 'Preguntas para el grupo'
+];
+const visualArt = [
+  '<rect x="48" y="18" width="84" height="144" rx="16"/><rect x="58" y="43" width="64" height="83" rx="4"/><circle cx="90" cy="136" r="5"/><path d="M69 78h42M69 91h27"/>',
+  '<circle cx="90" cy="90" r="62"/><path d="M73 76h34v39H73zM78 70h24M82 121h16"/><circle cx="90" cy="91" r="12"/><path d="m96 100 17 17"/>',
+  '<path d="M28 120h124M38 120V96h104v24M52 96V72h76v24M67 72V48h46v24"/><circle cx="90" cy="35" r="10"/><path d="m86 35 4 4 8-10"/>',
+  '<path d="M90 26 148 54v48l-58 28-58-28V54z"/><path d="m32 54 58 28 58-28M90 82v48"/><path d="M63 69h54M70 102h40"/>',
+  '<rect x="42" y="28" width="96" height="34" rx="6"/><rect x="42" y="73" width="96" height="34" rx="6"/><rect x="42" y="118" width="96" height="20" rx="6"/><path d="M90 62v11M90 107v11M72 45h36M72 90h36"/>',
+  '<rect x="47" y="45" width="86" height="90" rx="8"/><path d="M61 61h58M61 78h58M61 95h58M61 112h35M38 61h-8v62h8M133 61h9v62h-9"/><circle cx="90" cy="24" r="8"/>',
+  '<path d="m90 20 48 18v40c0 34-22 54-48 64-26-10-48-30-48-64V38z"/><path d="m67 81 15 15 31-35"/><circle cx="90" cy="64" r="8"/>',
+  '<ellipse cx="90" cy="90" rx="68" ry="46"/><path d="M28 90h124M90 44v92"/><ellipse cx="90" cy="90" rx="29" ry="46"/><path d="M43 63h94M43 117h94"/>',
+  '<rect x="35" y="42" width="37" height="37"/><rect x="108" y="42" width="37" height="37"/><rect x="35" y="105" width="37" height="37"/><rect x="108" y="105" width="37" height="37"/><path d="M72 60h36M53 79v26M127 79v26M72 123h36"/>',
+  '<circle cx="90" cy="90" r="33"/><circle cx="90" cy="90" r="13"/><path d="M90 23v22M90 135v22M23 90h22M135 90h22M43 43l16 16M121 121l16 16M137 43l-16 16M59 121l-16 16"/>',
+  '<rect x="34" y="40" width="112" height="100" rx="8"/><path d="M54 63h72M54 83h72M54 103h43M54 123h61"/><path d="m114 93 11 11 20-25"/>',
+  '<path d="M90 22 143 43v43c0 34-24 59-53 70-29-11-53-36-53-70V43z"/><rect x="64" y="64" width="52" height="42" rx="5"/><path d="M76 64v-9a14 14 0 0 1 28 0v9M77 84h26"/>',
+  '<path d="M38 44h104v92H38z"/><path d="M51 59h78M51 77h78M51 95h78M51 113h49"/><circle cx="126" cy="116" r="13"/><path d="m120 116 4 4 8-10"/>',
+  '<path d="M42 57h35l13 13h48v63H42z"/><path d="M53 84h74M53 103h52"/><circle cx="112" cy="117" r="12"/><path d="m107 117 4 4 8-10"/>'
+];
+function topicVisual(number) {
+  return `<button class="topic-visual" type="button" data-visual="${number}" aria-label="Ampliar ilustración: ${esc(visualCaptions[number - 1])}"><svg viewBox="0 0 180 180" role="img" aria-hidden="true"><g>${visualArt[number - 1]}</g></svg><span>${esc(visualCaptions[number - 1])}</span><b>+</b></button>`;
+}
+const slide = (number, content, className = '') => `<section class="slide ${className}" data-slide="${number}" aria-label="Diapositiva ${number}: ${esc(slideTitles[number - 1])}">${content}${topicVisual(number)}</section>`;
 
 const slides = [
   slide(1, `<div class="slide-inner"><div class="hero-copy">${label('Instituto Superior Tecnológico Policía Nacional')}<h1>Análisis interno de <span class="hero-title-accent">iOS</span> aplicado a la investigación forense digital</h1><p class="lede">Una lectura técnica sobre arquitectura, almacenamiento, cifrado y las decisiones que preservan el valor de la evidencia móvil.</p><div class="hero-actions"><button class="primary-button" data-go="2">Iniciar presentación&nbsp; →</button><button class="secondary-button" data-open-members>Ver integrantes</button></div><div class="hero-meta"><div><strong>Grupo 03</strong>Informática básica / tercer parcial</div><div><strong>Docente</strong>Ing. René Quisaguano, Mgtr.</div></div></div><div class="hero-orbit" aria-hidden="true"><div class="phone"><div class="chip-dots"><i></i><i></i><i></i><i></i></div></div><span class="hero-signal">● SIGNAL / FORENSIC LAB</span></div></div>`, 'hero-slide'),
@@ -76,6 +102,13 @@ function toggleAnswer(button) { const card = button.closest('.question-card'); c
 function setupInteractions() {
   document.querySelectorAll('[data-go]').forEach((button) => button.addEventListener('click', () => { goToSlide(button.dataset.go); closeDrawer(); }));
   document.querySelectorAll('.expandable').forEach((card) => card.addEventListener('click', () => card.classList.toggle('expanded')));
+  document.querySelectorAll('.topic-visual').forEach((visual) => visual.addEventListener('click', (event) => {
+    event.stopPropagation();
+    const enlarged = visual.classList.toggle('enlarged');
+    visual.setAttribute('aria-expanded', String(enlarged));
+    visual.querySelector('b').textContent = enlarged ? '×' : '+';
+    if (enlarged) showToast(`${visualCaptions[Number(visual.dataset.visual) - 1]} / haz clic para cerrar`);
+  }));
   document.querySelectorAll('.timeline-item').forEach((item) => item.addEventListener('click', () => {
     document.querySelectorAll('.timeline-item').forEach((node) => node.classList.remove('selected'));
     item.classList.add('selected');
@@ -114,7 +147,7 @@ document.querySelector('#presentationModeButton').addEventListener('click', () =
 });
 
 document.addEventListener('keydown', (event) => {
-  if (event.key === 'Escape') { closeDrawer(); document.querySelector('#referencesModal').hidden = true; }
+  if (event.key === 'Escape') { closeDrawer(); document.querySelector('#referencesModal').hidden = true; document.querySelector('.topic-visual.enlarged')?.click(); }
   if (event.key === 'ArrowRight' || event.key === 'PageDown' || event.key === ' ') { event.preventDefault(); goToSlide(current + 1); }
   if (event.key === 'ArrowLeft' || event.key === 'PageUp') { event.preventDefault(); goToSlide(current - 1); }
   if (event.key === 'Home') goToSlide(1);

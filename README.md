@@ -35,6 +35,7 @@ Después abre el puerto 8080 en Codespaces. La conexión es necesaria para carga
 - `←` / `→`, `PageUp` / `PageDown`, `Home`, `End` y `Esc`.
 - Modo presentación desde el botón de pantalla completa.
 - Tarjetas, línea de tiempo, capas, particiones APFS y respuestas expandibles.
+- Una ilustración SVG temática en cada diapositiva: pasa el cursor para resaltarla y haz clic para ampliarla.
 - Fuentes técnicas en el botón de referencias superior.
 
 ## Exportaciones
