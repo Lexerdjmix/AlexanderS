@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="theme-color" content="#07111f">
+	<meta name="description" content="Presentación académica interactiva sobre análisis forense en iOS.">
+	<title>Análisis forense en iOS | Grupo 3</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="css/style.css">
+	<script src="https://cdn.jsdelivr.net/npm/pptxgenjs@3.12.0/dist/pptxgen.bundle.js" defer></script>
+	<script src="js/script.js" defer></script>
+</head>
+<body>
+	<div class="app-shell">
+		<header class="topbar">
+			<a class="brand" href="#slide-1" aria-label="Ir a la portada">
+				<span class="brand-mark">ISU<span>POL</span></span>
+				<span class="brand-divider"></span>
+				<span class="brand-context">Informática forense<br><small>Grupo 03 / 2026</small></span>
+			</a>
+			<div class="topbar-actions">
+				<button class="icon-button" id="referencesButton" type="button" aria-label="Abrir fuentes y referencias" title="Fuentes y referencias">⌕</button>
+				<button class="icon-button" id="presentationModeButton" type="button" aria-label="Activar modo presentación" title="Modo presentación">⛶</button>
+			</div>
+		</header>
+
+		<main id="presentation" aria-live="polite">
+			<div class="ambient-grid" aria-hidden="true"></div>
+			<div class="slide-counter"><span id="currentSlide">01</span><span class="counter-rule"></span><span>14</span></div>
+			<div class="slides" id="slidesContainer"></div>
+		</main>
+
+		<footer class="controlbar">
+			<button class="control-button menu-trigger" id="menuButton" type="button"><span class="control-icon">☰</span> Contenido</button>
+			<div class="progress-track" aria-label="Progreso de la presentación"><span id="progressBar"></span></div>
+			<div class="control-nav">
+				<button class="control-button" id="previousButton" type="button" aria-label="Diapositiva anterior">← <span class="control-label">Anterior</span></button>
+				<button class="control-button next-button" id="nextButton" type="button" aria-label="Diapositiva siguiente"><span class="control-label">Siguiente</span> →</button>
+			</div>
+			<div class="export-actions">
+				<button class="export-button" id="pptxButton" type="button"><span>↓</span> Exportar a PowerPoint</button>
+				<button class="pdf-button" id="pdfButton" type="button" aria-label="Exportar a PDF" title="Exportar a PDF">PDF</button>
+			</div>
+		</footer>
+	</div>
+
+	<aside class="navigation-drawer" id="navigationDrawer" aria-hidden="true" aria-label="Contenido de la presentación">
+		<div class="drawer-header"><div><span class="eyebrow">Mapa de exposición</span><h2>Contenido</h2></div><button class="close-button" id="closeMenuButton" type="button" aria-label="Cerrar menú">×</button></div>
+		<nav id="slideMenu"></nav>
+		<div class="drawer-footer">Flechas para navegar <span>•</span> Home / End</div>
+	</aside>
+	<div class="drawer-overlay" id="drawerOverlay"></div>
+
+	<div class="modal" id="referencesModal" role="dialog" aria-modal="true" aria-labelledby="referencesTitle" hidden>
+		<div class="modal-card">
+			<button class="close-button" id="closeReferencesButton" type="button" aria-label="Cerrar referencias">×</button>
+			<span class="eyebrow">Lecturas recomendadas</span>
+			<h2 id="referencesTitle">Fuentes y referencias</h2>
+			<p class="modal-intro">Material técnico consultado para contextualizar seguridad de plataforma, APFS y adquisición forense.</p>
+			<div class="reference-list">
+				<a href="https://support.apple.com/guide/security/welcome/web" target="_blank" rel="noreferrer"><span>01</span> Apple Platform Security <b>↗</b></a>
+				<a href="https://github.com/apple-oss-distributions/xnu" target="_blank" rel="noreferrer"><span>02</span> Apple Open Source — XNU <b>↗</b></a>
+				<a href="https://developer.apple.com/documentation/security" target="_blank" rel="noreferrer"><span>03</span> Apple Developer — Security <b>↗</b></a>
+				<a href="https://www.sleuthkit.org/autopsy/" target="_blank" rel="noreferrer"><span>04</span> The Sleuth Kit / Autopsy <b>↗</b></a>
+				<a href="https://www.nist.gov/publications/guidelines-mobile-device-forensics" target="_blank" rel="noreferrer"><span>05</span> NIST — Mobile Device Forensics <b>↗</b></a>
+			</div>
+		</div>
+	</div>
+
+	<div class="toast" id="toast" role="status"></div>
+</body>
+</html>
